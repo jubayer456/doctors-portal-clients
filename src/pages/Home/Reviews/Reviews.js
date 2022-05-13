@@ -3,6 +3,7 @@ import React from 'react';
 import people1 from '../../../assets/images/people1.png'
 import people2 from '../../../assets/images/people2.png'
 import people3 from '../../../assets/images/people3.png'
+import qoute from '../../../assets/icons/quote.svg'
 import Review from '../Review/Review';
 const Reviews = () => {
     const comments = [
@@ -12,8 +13,15 @@ const Reviews = () => {
     ]
     return (
         <div className='p-12'>
-            <h1 className='text-secondary font-bold'>Testimonial</h1>
-            <h1 className='text-3xl'>What our patients says</h1>
+            <div className='flex justify-between'>
+                <div>
+                    <h1 className='text-secondary font-bold'>Testimonial</h1>
+                    <h1 className='text-3xl'>What our patients says</h1>
+                </div>
+
+                <img className='w-24 lg:w-48' src={qoute} alt="" />
+
+            </div>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 px-6'>
                 {
                     comments.map(comment => <Review
