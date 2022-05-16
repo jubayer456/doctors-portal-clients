@@ -10,6 +10,9 @@ import NotFound from './pages/NotFound/NotFound';
 import Footer from './pages/Shared/Footer/Footer';
 import NavBar from './pages/Shared/NavBar/NavBar';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   return (
     <div >
@@ -27,6 +30,7 @@ function App() {
         <Route path='/*' element={<NotFound />}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer />
     </div>
   );
 }
