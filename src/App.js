@@ -6,6 +6,7 @@ import Home from './pages/Home/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Login/Register';
 import RequireAuth from './pages/Login/RequireAuth';
+import RequireAdmin from './pages/Login/RequireAdmin';
 import NotFound from './pages/NotFound/NotFound';
 import Footer from './pages/Shared/Footer/Footer';
 import NavBar from './pages/Shared/NavBar/NavBar';
@@ -37,7 +38,7 @@ function App() {
         }>
           <Route index element={<MyAppointment />}></Route>
           <Route path='review' element={<MyReview />}></Route>
-          <Route path='users' element={<AllUsers />}></Route>
+          <Route path='users' element={<RequireAdmin><AllUsers /></RequireAdmin>}></Route>
         </Route>
         <Route path='/*' element={<NotFound />}></Route>
       </Routes>

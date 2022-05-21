@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 const useAdmin = user => {
     const [admin, setAdmin] = useState(false);
+    const [adminLoading, setAdminLoading] = useState(true);
     const navigate = useNavigate();
     useEffect(() => {
         const email = user?.email;
@@ -22,11 +23,14 @@ const useAdmin = user => {
                     }
                     return res.json()
                 })
-                .then(data => setAdmin(data.admin));
+                .then(data => {
+                    setAdmin(data.admin);
+                    setAdminLoading(false);
+                });
 
         }
     }, [user, navigate])
-    return [admin];
+    return [admin, adminLoading];
 };
 
 export default useAdmin;
