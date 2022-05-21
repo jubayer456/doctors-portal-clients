@@ -9,10 +9,18 @@ const UserRow = ({ user, refetch, index }) => {
             headers: {
                 authorization: `Barear ${localStorage.getItem('accessToken')}`
             }
-        }).then(res => res.json())
+        }).then(res => {
+            if (res.status === 401 || res.status === 403) {
+                toast.error("Failed to  make and admin");
+            }
+            return res.json();
+        })
             .then(data => {
-                refetch();
-                toast.success("successfully made and admin");
+                if (data.modifiedCount > 0) {
+                    refetch();
+                    toast.success("successfully made and admin");
+                }
+
             })
 
     }
@@ -21,8 +29,8 @@ const UserRow = ({ user, refetch, index }) => {
         <tr>
             <td>{index}</td>
             <td>{email}</td>
-            <td>{role !== 'admin' && <button onClick={makeAdmin} className='btn'>Make Admin</button>}</td>
-            <td><button className='btn'>Remove</button></td>
+            <td>{role !== 'admin' && <button onClick={makeAdmin} className='btn btn-sm'>Make Admin</button>}</td>
+            <td><button className='btn btn-sm'>Remove</button></td>
         </tr>
     );
 };
