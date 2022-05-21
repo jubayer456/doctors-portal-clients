@@ -4,6 +4,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import { useForm } from 'react-hook-form';
 import Loading from '../Shared/Loading/Loading';
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../Hooks/useToken';
 
 
 const Register = () => {
@@ -12,6 +13,7 @@ const Register = () => {
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const navigate = useNavigate();
+    const [token] = useToken(user || gUser);
     let errorElement;
     if (gLoading || loading || updating) {
         return <Loading />
@@ -19,15 +21,13 @@ const Register = () => {
     if (gError || error || updateError) {
         errorElement = <p className='text-red-500'>{gError?.message || error?.message || updateError?.message}</p>
     }
-    if (gUser || user) {
-        console.log(gUser || user);
+    if (token) {
+        // console.log(token);
     }
     const onSubmit = async data => {
-        console.log(data);
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
-        console.log('updateed');
-        navigate('/appointment');
+        // navigate('/appointment');
     };
 
     return (

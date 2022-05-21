@@ -18,6 +18,7 @@ const DashBoard = () => {
                     {/* <!-- Sidebar content here --> */}
                     <li><Link to='/dashboard'> My Appointment</Link></li>
                     <li><Link to='review'>My Review</Link></li>
+                    <li><Link to='users'>All users</Link></li>
 
                 </ul>
 
